@@ -1,83 +1,85 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
+    <div class="col-4">
       <h4>新規会員登録</h4>
     </div>
   </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="row">
-    <div class="field form-inline">
-      <div class="col-4">
-        <%= f.label :名前（姓） %>
+  <div class="row m-2">
+      <div class="col-2">
+        <%= f.label :名前 %>
+      </div>
+       <div class="col-2">
+        <%= f.label :（姓）,class:"float-right" %>
       </div>
       <div class="col-3">
-        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:"令和" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:"令和", style: "width: 100%;" %>
       </div>
       <div class="col-2">
-        <%= f.label :（名） %>
+        <%= f.label :（名）,class:"float-right" %>
       </div>
       <div class="col-3">
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"直子" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"道子", style: "width: 100%;" %>
       </div>
-    </div>
   </div>
 
-  <div class="row">
-    <div class="field form-inline">
-      <div class="col-4">
-        <%= f.label :フリガナ（セイ） %>
-      </div>
-      <div class="col-3">
-        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:"レイワ" %>
+  <div class="row m-2">
+      <div class="col-2">
+        <%= f.label :フリガナ %>
       </div>
       <div class="col-2">
-        <%= f.label :（メイ） %>
+        <%= f.label :（セイ）,class:"float-right", style:"p-0" %>
       </div>
       <div class="col-3">
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"ナオコ" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:"レイワ", style: "width: 100%;" %>
       </div>
-    </div>
+      <div class="col-2">
+        <%= f.label :（メイ）,class:"float-right", style:"p-0" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"ミチコ", style: "width: 100%;" %>
+      </div>
+  </div>
 
-    <div class="field form-inline">
+  <div class="row m-2">
       <div class="col-4">
-        <%= f.label :メールアドレス, class:"mr-4" %>
-      </div>
+        <%= f.label :メールアドレス %>
+      </div> 
       <div class="col-3">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com", style: "width: 100%;" %>
       </div>
-    </div>
+  </div>
 
-    <div class="field form-inline">
+  <div class="row m-2">
       <div class="col-4">
         <%= f.label :郵便番号（ハイフンなし） %>
       </div>
       <div class="col-3">
-        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder:"0000000" %>
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder:"0000000", style: "width: 100%;" %>
       </div>
-    </div>
+  </div>
 
-    <div class="field form-inline">
+  <div class="row m-2">
       <div class="col-4">
         <%= f.label :住所 %>
       </div>
       <div class="col-8">
-        <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder:"東京都渋谷区代々木神園町0-0" %>
+        <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder:"東京都渋谷区代々木神園町0-0", style: "width: 100%;" %>
       </div>
-    </div>
+  </div>
 
-    <div class="field form-inline">
+  <div class="row m-2">
       <div class="col-4">
         <%= f.label :電話番号（ハイフンなし） %>
       </div>
       <div class="col-3">
-        <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephine_number", placeholder:"00000000000" %>
+        <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephine_number", placeholder:"00000000000", style: "width: 100%;" %>
       </div>
-    </div>
+  </div>
 
-    <div class="field form-inline">
+  <div class="row m-2">
       <div class="col-4">
         <%= f.label :パスワード %>
         <% if @minimum_password_length %>
@@ -85,21 +87,22 @@
         <% end %>
       </div>
       <div class="col-3">
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <%= f.password_field :password, autocomplete: "new-password", style: "width: 100%;" %>
       </div>
-    </div>
+  </div>
 
-    <div class="field form-inline">
+  <div class="row m-2">
       <div class="col-4">
         <%= f.label :パスワード（確認用） %>
       </div>
       <div class="col-3">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 100%;" %>
       </div>
+  </div>
+  <div class="row m-2">
+    <div class="actions mx-auto">
+      <%= f.submit "新規登録" %>
     </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 

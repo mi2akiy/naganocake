@@ -1,16 +1,21 @@
 Rails.application.routes.draw do
+ 
    devise_for :customers,skip: [:passwords], controllers: {
      registrations: "public/registrations",
      sessions: 'public/sessions'
    }
-  
+
    devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      sessions: "admin/sessions"
    }
- 
-
-  resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
-  resources :items, only: [:index, :show]
+  
+   namespace :public do
+    resources :customers, only:[:show, :edit, :update]
+    get 'customers/unsubscribe'
+    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :items, only: [:index, :show]
+   end
+   
   namespace :admin do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
   end
