@@ -1,2 +1,80 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h4>会員情報編集</h4>
+    </div>
+  </div>
+
+  <%= form_with model: @customers do |f| %>
+  <div class="row m-2">
+      <div class="col-4">
+        <%= f.label :氏名 %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :last_name, autofocus: true, id:"inputlast_name", style: "width: 100%;" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :first_name, autofocus: true, id:"inputfirst_name", style: "width: 100%;" %>
+      </div>
+  </div>
+
+  <div class="row m-2">
+      <div class="col-4">
+        <%= f.label :フリガナ %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :last_name_kana, autofocus: true, id:"inputlast_name_kana", style: "width: 100%;" %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :first_name_kana, autofocus: true, id:"inputfirst_name_kana", style: "width: 100%;" %>
+      </div>
+  </div>
+  
+  <div class="row m-2">
+      <div class="col-4">
+        <%= f.label :郵便番号（ハイフンなし） %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :postal_code, autofocus: true, id:"inputpostal_code", style: "width: 100%;" %>
+      </div>
+  </div>
+
+  <div class="row m-2">
+      <div class="col-4">
+        <%= f.label :住所 %>
+      </div>
+      <div class="col-8">
+        <%= f.text_field :address, autofocus: true, id:"inputaddress", style: "width: 100%;" %>
+      </div>
+  </div>
+
+  <div class="row m-2">
+      <div class="col-4">
+        <%= f.label :電話番号（ハイフンなし） %>
+      </div>
+      <div class="col-3">
+        <%= f.text_field :telephone_number, autofocus: true, id:"inputtelephone_number", style: "width: 100%;" %>
+      </div>
+  </div>
+
+  <div class="row m-2">
+      <div class="col-4">
+        <%= f.label :メールアドレス %>
+      </div> 
+      <div class="col-3">
+        <%= f.email_field :email, autofocus: true, id:"inputemail", style: "width: 100%;" %>
+      </div>
+  </div>
+
+  <div class="row m-2">
+    <div class="actions mx-auto">
+      <%= f.submit "編集内容を保存" %>
+    </div>
+    
+    <div>
+      <button type="button" class="btn btn-danger m-2">
+        <%= link_to "退会する", public_unsubscribe_path, class:"text-light" %>
+      </button>
+    </div>
+  </div>
+<% end %>
