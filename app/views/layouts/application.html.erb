@@ -35,6 +35,22 @@
                   <button class="btn btn-sm btn-outline-secondary" type="button">
                     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
                   </button>
+                <% elsif admin_signed_in? %>
+                  <button class="btn btn-sm btn-outline-secondary" type="button">
+                    <%= link_to "商品一覧", public_items_path %>
+                  </button>
+                  <button class="btn btn-sm btn-outline-secondary" type="button">
+                    <%= link_to "会員一覧", admin_customers_path %>
+                  </button>
+                  <button class="btn btn-sm btn-outline-secondary" type="button">
+                    <%= link_to "注文履歴一覧", admin_orders_show_path %>
+                  </button>
+                  <button class="btn btn-sm btn-outline-secondary" type="button">
+                    <%= link_to "ジャンル一覧", admin_genres_path %>
+                  </button>  
+                  <button class="btn btn-sm btn-outline-secondary" type="button">
+                    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                  </button>
                 <% else %>
                   <button class="btn btn-sm btn-outline-secondary" type="button">
                     <%= link_to "about", homes_about_path %>

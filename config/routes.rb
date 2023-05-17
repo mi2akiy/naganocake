@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'orders/new'
-    get 'orders/complete'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'adresses/index'
-    get 'adresses/edit'
-  end
    devise_for :customers,skip: [:passwords], controllers: {
      registrations: "public/registrations",
      sessions: 'public/sessions'
@@ -25,10 +15,16 @@ Rails.application.routes.draw do
     patch 'customers/withdrawal'=> 'customers#withdrawal', as: 'withdrawal'
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :items, only: [:index, :show]
+    resources :orders, only:[:new, :index, :show]
+    get 'orders/complete'
+    resources :adresses, only:[:index, :edit, :update]
    end
    
   namespace :admin do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only:[:index, :edit, :create, :update]
+    resources :customers, only:[:index, :show, :edit, :update]
+    get 'orders/show'
   end
 
   root to: 'public/homes#top'

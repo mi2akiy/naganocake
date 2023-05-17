@@ -7,8 +7,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-   def active_for_authentication?
+  def active_for_authentication?
     super && (is_deleted == false)
-   end
+  end
   
 end

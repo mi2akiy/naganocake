@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <%= form_with model: @customers do |f| %>
+  <%= form_with model: @customer, url:public_customers_path, method: :patch do |f| %>
   <div class="row m-2">
       <div class="col-4">
         <%= f.label :氏名 %>
