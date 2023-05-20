@@ -33,7 +33,7 @@
       <%= f.label :ジャンル %>
     </div>
     <div>
-       <%= f.collection_select :genr_id,@genres.all, :name, :name, include_blank: "選択して下さい" %>
+       <%= f.collection_select :genre_id,@genres.all, :id, :name, include_blank: "選択して下さい" %>
     </div>
   </div>
 
@@ -52,11 +52,11 @@
     </div>
     <div>
      <%= f.label :status, '販売中', value: 1 %>
-   　 <%= f.radio_button :status, '1' %>
+   　 <%= f.radio_button :status, '販売中' %>
     </div>
     <div>
   　  <%= f.label :status, '販売停止中', value: 0 %>
-  　  <%= f.radio_button :status, '0' %>
+  　  <%= f.radio_button :status, '販売停止中' %>
     </div>
   </div>
 

@@ -1,0 +1,43 @@
+<div class="container form-inline">
+
+  <!--サイドバー-->
+  <div class="col-3">
+    <table class="table table-hover">
+      <thead>
+        ジャンル検索
+      </thead>
+      <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td>
+              <%= genre.name %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <!--商品一覧-->
+  <div class="col-9">
+    <h4>商品一覧</h4><p>（全<%= @items.count %>件）</p>
+    <div class="d-flex p-2 bd-highlight flex-wrap">
+      <% @items.each do |item| %>
+        <div class="item m-2">
+          <div class="item-image">
+            <%= image_tag item.get_item_image(180,180) %>
+          </div>
+          <div class="item-name">
+            <%= item.name %>
+          </div>
+          <div class="item-price">
+            ¥<%= item.price %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="mx-auto" style="width: 200px;">
+    <%= paginate @items %>
+  </div>
+</div>
