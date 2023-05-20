@@ -25,10 +25,14 @@
       <% @items.each do |item| %>
         <div class="item m-2">
           <div class="item-image">
-            <%= image_tag item.get_item_image(180,180) %>
+            <%= link_to public_item_path(item.id) do %>
+              <%= image_tag item.get_item_image(180,180) %>
+            <% end %>
           </div>
           <div class="item-name">
-            <%= item.name %>
+            <%= link_to public_item_path(item.id) do %>
+              <%= item.name %>
+            <% end %>
           </div>
           <div class="item-price">
             ¥<%= item.price %>
