@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :orders, only:[:new, :index, :show]
     get 'orders/complete'
-    resources :adresses, only:[:index, :edit, :update]
+    resources :adresses, only:[:index, :create, :edit, :update, :destroy]
    end
    
   namespace :admin do
