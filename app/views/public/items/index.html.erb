@@ -35,7 +35,7 @@
             <% end %>
           </div>
           <div class="item-price">
-            ¥<%= item.price %>
+            ¥<%= item.price.to_s(:dalimited) %>
           </div>
         </div>
       <% end %>

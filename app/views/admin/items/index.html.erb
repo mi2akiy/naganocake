@@ -34,7 +34,7 @@
           <% end %>
         </td>
         <td>
-          <%= item.price %>
+          <%= item.price.to_s(:delimited) %>
         </td>
         <td>
           <%= item.genre.name %>

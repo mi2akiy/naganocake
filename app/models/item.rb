@@ -4,8 +4,8 @@ class Item < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_one_attached :item_image
   
-  def add_tax_price 
-    (self.price * 1.10).round
+  def taxin_price
+        price*1.1
   end
   
   def get_item_image(width,height)

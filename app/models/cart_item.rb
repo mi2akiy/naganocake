@@ -1,9 +1,8 @@
 class CartItem < ApplicationRecord
   belongs_to :item
-  has_many:customers, dependent: :destroy
-  
-  def add_tax_price 
-    (self.item.price * 1.10).round
+  belongs_to :customer
+
+  def sum_of_price
+    item.taxin_price * amount
   end
-  
 end

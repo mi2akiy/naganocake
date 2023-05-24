@@ -31,11 +31,11 @@
          <%= @item.introduction %>
        </div>
        <div class="mt-4">
-         <strong>¥<%= @item.add_tax_price.to_s(:dalimited) %></strong>（税込）
+         <strong>¥<%= @item.taxin_price.ceil.to_s(:delimited) %></strong>（税込）
        </div>
        <div>
           <%= form_with model: @cart_item, url: public_cart_items_path, method: :post do |f| %>
-            <%= f.select :amount, *[1..3], include_blank: "個数選択" %>
+            <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
             <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit "カートに入れる" %> 
           <% end %>
