@@ -1,0 +1,93 @@
+<div class="container">
+  <h4>注文情報確認</h4>
+  <div class="row form-inline">
+    <div class="col-9">
+      <table class="table table-bordered">
+        <th class="table-secondary">
+          商品名
+        </th>
+        <th class="table-secondary">
+          単価（税込）
+        </th>
+        <th class="table-secondary">
+          数量
+        </th>
+        <th class="table-secondary">
+          小計
+        </th>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td class="pl-4">
+              <%= cart_item.item.name %>
+            </td>
+            <td>
+              <%= cart_item.item.taxin_price.ceil.to_s(:dalimited) %>
+            </td>
+            <td>
+              <%= cart_item.amount %>
+            </td>
+             <td>
+               <%= (cart_item.item.taxin_price * cart_item.amount).ceil.to_s(:delimited) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="col-3">
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-secondary">
+            送料
+          </td>
+          <td>
+            <%= @order.freight %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary">
+            商品合計
+          </td>
+          <td>
+            <%= @total.round.to_s(:delimited) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary">
+            請求金額
+          </td>
+          <td>
+            <%= (@order.freight + @total.round).to_s(:delimited) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+    <div class="form-inline">
+      <h4><strong>支払方法</strong></h4>
+      <div class="ml-2">
+        <%= @order.payment_i18n %>
+      </div>
+    </div>
+
+    <div class="form-inline">
+      <h4><strong>お届け先</strong></h4>
+      <div class="ml-2">
+        <%= '〒' + @order.postal_code + ' ' + @order.address + ' ' + @order.addressee %>
+      </div>
+    </div>
+
+    <div>
+      <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
+        <%= f.hidden_field :postal_code, :value => @order.postal_code %>
+        <%= f.hidden_field :addressee, :value => @order.addressee %>
+        <%= f.hidden_field :address, :value => @order.address %>
+        <%= f.hidden_field :freight, :value => @order.freight %>
+        <%= f.hidden_field :payment, :value => @order.payment %>
+        <%= f.hidden_field :amount_claimed, :value => @total+@order.freight %>
+        <%= f.submit "注文を確定する", class:"btn-success" %>
+      <% end %>
+    </div>
+
+</div>
