@@ -13,14 +13,14 @@ class Public::OrdersController < ApplicationController
     @order.freight = 800
     if select_address == '0'
       @order.postal_code = current_customer.postal_code
-      @order.address = current_customer.address
-      @order.addressee = current_customer.last_name + current_customer.first_name
+      @order.addressee = current_customer.addressee
+      @order.address = current_customer.last_name + current_customer.first_name
 
     elsif select_address == '1'
-      @address = Address.find(params[:order][:address_id])
+      @address = Adress.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
-      @order.address = @address.address
       @order.addressee = @address.addressee
+      @order.address = @address.address
     elsif select_address == '2'
     end
       @cart_items = CartItem.all
@@ -35,15 +35,28 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-    @cart_items = CartItem.all
-    @cart_items.destroy_all
+    
+    current_customer.cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.order_id = @order.id
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.amount = cart_item.amount
+      @order_detail.price = (cart_item.item.price*1.08).floor
+      @order_detail.save
+    end
+      
+    current_customer.cart_items.destroy_all
+
     redirect_to public_orders_complete_path
   end
 
   def index
+    @orders = Order.all
+    @order_details = OrderDetail.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   private
