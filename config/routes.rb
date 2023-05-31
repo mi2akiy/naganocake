@@ -19,15 +19,14 @@ Rails.application.routes.draw do
       end
   end
     resources :items, only: [:index, :show]
-    resources :orders, only:[:new, :create, :index]
+    resources :orders, only:[:new, :create, :index, :show]
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
-    get 'orders/show' => 'orders#show'
     resources :adresses, only:[:index, :create, :edit, :update, :destroy]
    end
 
   namespace :admin do
-    get 'homes/top'
+    root 'homes#top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only:[:index, :edit, :create, :update]
     resources :customers, only:[:index, :show, :edit, :update]

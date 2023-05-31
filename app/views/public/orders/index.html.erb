@@ -28,15 +28,15 @@
           <%= order.addressee %>
         </td>
         <td>
-          <% @order_details.each do |order_detail| %>
-            <%= order_detail.item_id %>
+          <% order.order_details.each do |order_detail| %>
+            <%= order_detail.item.name %><br>
           <% end %>
         </td>
         <td>
           <%= order.amount_claimed.to_s(:delimited) + '円' %>
         </td>
         <td>
-          <%= link_to "表示する", public_orders_show_path, class: "btn btn-primary" %>
+          <%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %>
         </td>
       </tr>
     <% end %>

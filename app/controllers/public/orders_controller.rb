@@ -52,11 +52,11 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @order_details = OrderDetail.all
   end
 
   def show
     @order = Order.find(params[:id])
+    @total = @order.order_details.inject(0){ |sum,item| sum + item.sum_of_price }
   end
 
   private

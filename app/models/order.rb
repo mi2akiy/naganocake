@@ -3,4 +3,6 @@ class Order < ApplicationRecord
   has_many:order_details, dependent: :destroy
   
   enum payment: { credit_card: 1, transfer: 2}
+  
+
 end
