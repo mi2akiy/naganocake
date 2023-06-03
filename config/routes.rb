@@ -19,9 +19,9 @@ Rails.application.routes.draw do
       end
   end
     resources :items, only: [:index, :show]
-    resources :orders, only:[:new, :create, :index, :show]
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
+    resources :orders, only:[:new, :create, :index, :show]
     resources :adresses, only:[:index, :create, :edit, :update, :destroy]
    end
 
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only:[:index, :edit, :create, :update]
     resources :customers, only:[:index, :show, :edit, :update]
-    get 'orders/show'
+    resources :orders, only:[:show]
   end
 
   root to: 'public/homes#top'
