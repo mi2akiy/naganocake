@@ -21,7 +21,7 @@
               <%= cart_item.item.name %>
             </td>
             <td>
-              <%= cart_item.item.taxin_price.ceil.to_s(:dalimited) %>
+              <%= cart_item.item.taxin_price.ceil.to_s(:delimited) %>
             </td>
             <td>
               <%= cart_item.amount %>
@@ -74,7 +74,7 @@
     <div class="form-inline">
       <h4><strong>お届け先</strong></h4>
       <div class="ml-2">
-        <%= '〒' + @order.postal_code + ' ' + @order.address + ' ' + @order.addressee %>
+        <%= '〒' + @order.postal_code + ' ' + @order.addressee + ' ' + @order.address %>
       </div>
     </div>
 

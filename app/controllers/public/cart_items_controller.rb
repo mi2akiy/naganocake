@@ -1,6 +1,9 @@
 class Public::CartItemsController < ApplicationController
+  
+  before_action :is_matching_login_customer, only: [:update, :destroy]
+  
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0){ |sum,item| sum + item.sum_of_price }
   end
 
@@ -37,6 +40,13 @@ class Public::CartItemsController < ApplicationController
   end
 
   private
+  
+  def is_matching_login_customer
+    cart_item = CartItem.find(params[:id])
+    unless cart_item.customer_id == current_customer.id
+      redirect_to public_cart_items_path
+    end
+  end
 
   def cart_item_params
      params.require(:cart_item).permit(:item_id, :customer_id, :amount)

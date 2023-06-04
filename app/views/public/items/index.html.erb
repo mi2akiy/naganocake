@@ -2,10 +2,10 @@
 
   <!--サイドバー-->
   <div class="col-3">
-    <table class="table table-hover">
-      <thead>
+    <table class="table table-bordered border-dark table-hover">
+      <th>
         ジャンル検索
-      </thead>
+      </th>
       <tbody>
         <% @genres.each do |genre| %>
           <tr>
@@ -20,7 +20,10 @@
 
   <!--商品一覧-->
   <div class="col-9">
-    <h4>商品一覧</h4><p>（全<%= @items.count %>件）</p>
+    <div class="form-inline">
+      <h4>商品一覧</h4>
+      <p>（全<%= @items.count %>件）</p>
+    </div>
     <div class="d-flex p-2 bd-highlight flex-wrap">
       <% @items.each do |item| %>
         <div class="item m-2">
@@ -30,12 +33,12 @@
             <% end %>
           </div>
           <div class="item-name">
-            <%= link_to public_item_path(item.id) do %>
-              <%= item.name %>
+            <%= link_to public_item_path(item.id), class:"text-dark" do %>
+              <strong><%= item.name %></strong>
             <% end %>
           </div>
           <div class="item-price">
-            ¥<%= item.price.to_s(:dalimited) %>
+            ¥<%= item.price.ceil.to_s(:delimited) %>
           </div>
         </div>
       <% end %>

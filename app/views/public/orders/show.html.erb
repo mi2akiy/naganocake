@@ -1,12 +1,16 @@
 <div class="container">
-  <h4>注文履歴詳細</h4>
+  <div class="row m-2">
+    <div>
+      <h4>注文履歴詳細</h4>
+    </div>
+  </div>
   
   <div class="row form-inline">
     <div class="col-9">
       <strong>注文情報</strong>
       <table class="table table-bordered">
         <tr>
-          <td class="table-secondary">
+          <td class="table-avtive">
             注文日
           </td>
           <td>
@@ -14,17 +18,17 @@
           </td>
         </tr>
         <tr>
-           <td class="table-secondary">
+           <td class="table-active">
             配送先
           </td>
           <td>
             <%= '〒' + @order.postal_code %><br>
-            <%= @order.address %><br>
-            <%= @order.addressee %>
+            <%= @order.addressee %><br>
+            <%= @order.address %>
           </td>
         </tr>
         <tr>
-          <td class="table-secondary">
+          <td class="table-active">
             支払方法
           </td>
           <td>
@@ -37,7 +41,7 @@
     <div class="col-3">
       <table class="table table-bordered">
         <tr>
-          <td class="table-secondary">
+          <td class="table-active">
             商品合計
           </td>
           <td>
@@ -45,7 +49,7 @@
           </td>
         </tr>
         <tr>
-           <td class="table-secondary">
+           <td class="table-active">
             配送料
           </td>
           <td>
@@ -53,7 +57,7 @@
           </td>
         </tr>
         <tr>
-           <td class="table-secondary">
+           <td class="table-active">
             ご請求額
           </td>
           <td>
@@ -67,16 +71,16 @@
   <div class="row">
     <div class="col-11">
       <table class="table table-bordered">
-        <th class="table-secondary">
+        <th class="table-active">
           商品
         </th>
-        <th class="table-secondary">
+        <th class="table-active">
           単価（税込）
         </th>
-        <th class="table-secondary">
+        <th class="table-active">
           個数
         </th>
-        <th class="table-secondary">
+        <th class="table-active">
           小計
         </th>
         <% @order.order_details.each do |order_detail| %>

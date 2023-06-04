@@ -1,39 +1,57 @@
 <div class="container">
 
-<h4>ジャンル一覧・追加</h4>
+ <% if @genre.errors.any? %>
+  <%= @genre.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @genre.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+  
+  
+<div class="row m-2">
+  <div>
+    <h4>ジャンル一覧・追加</h4>
+  </div>
+</div>
 
   <%= form_with model: @genre,url:admin_genres_path, method: :post do |f| %>
-  <div class="form-inline">
-    <div>
-      <%= f.label :ジャンル名 %>
+  <div class="row form-inline m-2">
+    <div class="col-3">
+      <%= f.label :ジャンル名, placeholder: "ジャンル名" %>
     </div>
-    <div>
-      <%= f.text_field :name %>
+    <div class="col-4">
+      <%= f.text_field :name, style:"width:80%;" %>
     </div>
-    <div class="actions">
+    <div class="col-3">
       <%= f.submit "新規登録",class:"btn btn-sm btn-success" %>
     </div>
   </div>
   <% end %>
 
-
-<table class="table">
-  <th>
-    ジャンル
-  </th>
-  <th>
-
-  </th>
-  <% @genres.each do |genre| %>
-    <tr>
-      <td>
-        <%= genre.name %>
-      </td>
-      <td>
-        <%= link_to "編集する",edit_admin_genre_path(genre.id), class:"btn btn-sm btn-success" %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="row m-2">
+  <div class="col-7">
+    <table class="table bordered border-dark">
+      <th class="table-active">
+        ジャンル
+      </th>
+      <th class="table-active">
+    
+      </th>
+      <% @genres.each do |genre| %>
+        <tr>
+          <td>
+            <%= genre.name %>
+          </td>
+          <td>
+            <%= link_to "編集する",edit_admin_genre_path(genre.id), class:"btn btn-sm btn-success" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
 </div>

@@ -1,6 +1,11 @@
 <div class="container">
- <h4>商品詳細</h4>
- <div class="row">
+ <div class="row m-2">
+  <div>
+   <h4>商品詳細</h4>
+  </div>
+ </div>
+ 
+ <div class="row m-2">
    <div class="col-3">
      <%= image_tag @item.get_item_image(250,250) %>
    </div>
@@ -38,7 +43,7 @@
          税込価格（税抜価格）
        </div>
        <div class="col-5">
-         <%= @item.taxin_price.to_s(:delimited) %>(<%= (@item.price.to_s(:delimited)) %>)円
+         <%= @item.taxin_price.ceil.to_s(:delimited) %>(<%= (@item.price.to_s(:delimited)) %>)円
        </div>
      </div>
 
@@ -46,7 +51,7 @@
        <div class="col-4">
          販売ステータス
        </div>
-       <div class="col-5">
+       <div class="col-5 text-success font-weight-bold">
          <%= @item.status %>
        </div>
      </div>
@@ -56,9 +61,7 @@
 
  <div class="row">
    <div class="col-md-6 offset-md-5">
-     <button type="button" class="btn btn-success">
-       <%= link_to "編集する", edit_admin_item_path %>
-     </button>
+      <%= link_to "編集する", edit_admin_item_path, class:"btn btn-success" %>
    </div>
  </div>
 

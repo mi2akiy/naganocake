@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="row">
+  
+  <div class="row m-2">
     <div class="col-4">
       <h4>新規会員登録</h4>
     </div>
@@ -100,13 +101,13 @@
       </div>
   </div>
   <div class="row m-2">
-    <div class="actions mx-auto">
-      <%= f.submit "新規登録" %>
+    <div class="col-3 offset-4">
+      <%= f.submit "新規登録", class:"btn btn-success" %>
     </div>
   </div>
 <% end %>
 
-<h4>すでに登録済みの方</h4>
+<h4>既に登録済みの方</h4>
 
 <%= render "public/shared/links" %>
 </div>

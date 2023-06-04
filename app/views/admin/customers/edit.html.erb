@@ -1,6 +1,16 @@
 <div class="container">
-  <div class="row">
-    <div class="col-4">
+  
+  <% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+  <div class="row m-2">
+    <div>
       <h4>会員情報編集</h4>
     </div>
   </div>
@@ -66,23 +76,23 @@
       </div>
   </div>
 
-   <div class="form-inline">
-    <div>
+   <div class="row m-2">
+    <div class="col-4">
       <%= f.label :会員ステータス %>
     </div>
-    <div>
-     <%= f.label :is_deleted, '有効' %>
-   　 <%= f.radio_button :is_deleted, false %>
+    <div class="col-1 form-inline">
+      <%= f.radio_button :is_deleted, false %>
+      <%= f.label :is_deleted, '有効' %>
     </div>
-    <div>
-  　  <%= f.label :is_deleted, '退会' %>
-  　  <%= f.radio_button :is_deleted, true %>
+    <div class="col-1 form-inline">
+      <%= f.radio_button :is_deleted, true %>
+      <%= f.label :is_deleted, '退会' %>
     </div>
   </div>
 
   <div class="row m-2">
     <div class="actions mx-auto">
-      <%= f.submit "変更を保存" %>
+      <%= f.submit "変更を保存", class:"btn btn-success" %>
     </div>
   </div>
 <% end %>

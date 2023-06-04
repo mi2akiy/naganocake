@@ -1,25 +1,27 @@
 <div class="container">
-  <div class="row">
-    <h4t>商品一覧</h4>
-     <button class="btn btn-sm btn-light" type="button">
-       <%= link_to "+", new_admin_item_path %>
-     </button>
+  <div class="row m-4">
+    <div class="col-3">
+      <h4>商品一覧</h4>
+    </div>
+    <div class="col-1 offset-8">
+       <%= link_to "＋", new_admin_item_path, class:"btn rounded-circle p-0 btn-light", style:"width:2rem;height:2rem;"  %>
+    </div>
   </div>
 
-  <table class="table">
-    <th>
+  <table class="table table-bordered border-dark">
+    <th class="table-active">
       商品ID
     </th>
-    <th>
+    <th class="table-active">
       商品名
     </th>
-    <th>
+    <th class="table-active">
       税抜価格
     </th>
-    <th>
+    <th class="table-active">
       ジャンル
     </th>
-    <th>
+    <th class="table-active">
       ステータス
     </th>
 

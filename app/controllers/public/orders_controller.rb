@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+  
+  before_action :is_matching_login_customer, only: [:show]
+  
   def new
     @order = Order.new
 
@@ -13,7 +16,7 @@ class Public::OrdersController < ApplicationController
     @order.freight = 800
     if select_address == '0'
       @order.postal_code = current_customer.postal_code
-      @order.addressee = current_customer.addressee
+      @order.addressee = current_customer.address
       @order.address = current_customer.last_name + current_customer.first_name
 
     elsif select_address == '1'
@@ -51,7 +54,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders
   end
 
   def show
@@ -60,6 +63,13 @@ class Public::OrdersController < ApplicationController
   end
 
   private
+  
+  def is_matching_login_customer
+    order = Order.find(params[:id])
+    unless order.customer_id == current_customer.id
+      redirect_to public_orders_path
+    end
+  end
 
   def order_params
     params.require(:order).permit(:payment, :postal_code, :address, :addressee, :freight, :amount_claimed)
